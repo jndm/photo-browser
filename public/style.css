@@ -1,7 +1,7 @@
-.test {
-    display: block;
-    width: 400px;
-    height: 300px;
-    padding: 100px;
-    background-color: black;
+.thumbnailRow {
+    margin-top: 20px;
+}
+
+.paginationRow {
+    text-align: center;
 }
