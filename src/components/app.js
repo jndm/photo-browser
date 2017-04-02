@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import PhotoContainer from '../containers/photo_container';
+import RootContainer from '../containers/root_container';
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <PhotoContainer />
+        <RootContainer />
       </div>
     );
   }

@@ -1,7 +1,36 @@
+.albumList {
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color:lightgray;
+}
+
+.albumListItem {
+    margin: 5px !important;
+}
+
+.centered {
+    text-align: center;
+}
+
 .thumbnailRow {
     margin-top: 20px;
 }
 
 .paginationRow {
     text-align: center;
+}
+
+.photoGrid {
+    border-color:black;
+    border: 1px, solid;
+}
+
+.showMoreButton {
+    width: 400px;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
 }
