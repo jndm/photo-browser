@@ -3,7 +3,8 @@ import axios from 'axios';
 const ROOT_URL = 'http://jsonplaceholder.typicode.com';
 
 export const FETCH_ALBUMS = 'FETCH_ALBUMS';
-export const SELECT_ALBUMS = 'SELECT_ALBUMS';
+export const SELECT_ALBUM = 'SELECT_ALBUM';
+export const UNSELECT_ALBUM = 'UNSELECT_ALBUM';
 
 export function fetchAlbums(limit) {
 	const url = `${ROOT_URL}/albums`;
@@ -15,9 +16,16 @@ export function fetchAlbums(limit) {
 	};
 }
 
-export function selectAlbum(photo) {
+export function selectAlbum(album) {
 	return {
-		type: SELECT_ALBUMS,
-		payload: photo
+		type: SELECT_ALBUM,
+		payload: album
+	}
+}
+
+export function unselectAlbum() {
+	return {
+		type: UNSELECT_ALBUM,
+		payload: null
 	}
 }

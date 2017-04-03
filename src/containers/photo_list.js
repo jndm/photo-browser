@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import { unselectAlbum } from '../actions/actions_album';
 import { fetchPhotos, selectPhoto } from '../actions/actions_photo';
-import {Grid, Row, Col, Image, Pagination} from 'react-bootstrap';
+import {Grid, Row, Col, Image, Pagination, Button} from 'react-bootstrap';
 
 const Thumbnail = (props) => {
 	return (
@@ -21,7 +23,7 @@ class PhotoList extends Component {
 		const photos = this.props.photos;
 
 		var thumbnailRows = [];
-		for(var i=0; i<photos.length - 5; i=i+5){
+		for(var i=0; i<photos.length - 5; i+=5){
 			thumbnailRows.push(
 				<Row className="thumbnailRow" key={i - (i * 4)}>
 					<Thumbnail photo={photos[i]}   onClick={this.props.selectPhoto} />
@@ -51,16 +53,21 @@ class PhotoList extends Component {
 
 	render() {
 		return (
-			<div>
+			<div>			
 				<Grid className="photoGrid">
 					<Row>
 						<h3>Otsikko</h3>
 						Tekijän nimi
 					</Row>
 						{this.renderFullSizeImage()}
-						{this.renderThumbnailRows()}
-					<Row className="paginationRow">
-						<Pagination bsSize="Large" prev next first last items={20} maxButtons={10}/>
+						{this.renderThumbnailRows()}			
+					<Row>
+						<Col md={3} lg={3}>
+							<Button className="return-button" bsStyle="primary" bsSize="large" onClick={() => this.props.unselectAlbum()}>&larr; Back To Albums</Button>
+						</Col>
+						<Col className="align-right" md={9} lg={9}>
+							<Pagination bsSize="Large" prev next first last items={20} maxButtons={10}/>
+						</Col>
 					</Row>
 				</Grid>
 			</div>
@@ -69,11 +76,11 @@ class PhotoList extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({fetchPhotos, selectPhoto}, dispatch)
+	return bindActionCreators({fetchPhotos, selectPhoto, unselectAlbum}, dispatch)
 }
 
 function mapStateToProps(state) {
-	return { photos: state.photos.all, selectedPhoto: state.photos.selectedPhoto };
+	return { photos: state.photos.all, selectedPhoto: state.photos.selectedPhoto, selectedAlbum: state.albums.selectedAlbum };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PhotoList);

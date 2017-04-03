@@ -8,7 +8,6 @@ export function fetchUsers() {
 	const url = `${ROOT_URL}/users`;
 	const request = axios.get(url);
 
-	console.log('fetching users');
 	return {
 		type: FETCH_USERS,
 		payload: request

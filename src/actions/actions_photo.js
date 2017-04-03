@@ -6,7 +6,7 @@ export const FETCH_PHOTOS = 'FETCH_PHOTOS';
 export const SELECT_PHOTO = 'SELECT_PHOTO';
 
 export function fetchPhotos() {
-	const url = `${ROOT_URL}/photos`;
+	const url = `${ROOT_URL}/photos?_limit=20`;
 	const request = axios.get(url);
 
 	return {

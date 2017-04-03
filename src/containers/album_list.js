@@ -1,36 +1,44 @@
-import React from 'react';
-import { Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-const AlbumListItem = (props) => {
-	return (
-		<Panel className="albumListItem" collapsible header={`Album creator: ${props.user.name}`}>
-    	<div>Name: {props.user.name}</div>
-			<div>Email: {props.user.email} </div>
-			<div>Phone: {props.user.phone} </div>
-			<div>Website: {props.user.website}</div>
-   	 <ListGroup fill>
-    	  {props.albums.map((album) => {
-					return (
-						<ListGroupItem key={album.id} onClick={() => {console.log("")}}>
-							{`ALBUM: ${album.title}`}
-						</ListGroupItem>
-					);
-				})}
-    	</ListGroup>
-  	</Panel>
-	);
-}
+import AlbumListItem from '../components/album_list_item';
+import { fetchUsers } from '../actions/actions_users';
+import { fetchAlbums } from '../actions/actions_album';
 
-export default (props) => {
-	if(!props.albums || !props.users) {
-		return null;
+class AlbumList extends Component {
+	componentWillMount() {
+		this.props.fetchAlbums();
+		this.props.fetchUsers();
 	}
 
-	return (
-		<div className="albumList">
-			{props.users.map((user) => { 
-				return <AlbumListItem key={user.id} user={user} albums={props.albums.filter((album) => album.userId === user.id)} /> 
-			})}
-		</div>
-	);
+	render() {
+		if(!this.props.albums || !this.props.users) {
+			return <div> Loading album data... </div>;
+		}
+
+		return (
+			<div className="album-list">
+				{this.props.users.map((user) => { 
+					return <AlbumListItem 
+										key={user.id} 
+										user={user} 
+										albums={this.props.albums.filter((album) => album.userId === user.id)}/>
+				})}
+			</div>
+		);
+	}
 }
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({fetchAlbums, fetchUsers}, dispatch)
+}
+
+function mapStateToProps(state) {
+	return { 
+		albums: state.albums.all,
+		users: state.users
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AlbumList);

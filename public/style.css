@@ -1,16 +1,28 @@
-.albumList {
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    min-width: 80%;
+}
+
+.header {
+    text-align: center;
+    font-size: 50pt;
+    font-weight: bold;
+}
+
+.album-list {
     padding: 10px;
     border-style: solid;
     border-width: 1px;
     border-color:lightgray;
+    border-radius: 20px;
 }
 
-.albumListItem {
-    margin: 5px !important;
-}
-
-.centered {
-    text-align: center;
+.album-list-item {
+    margin: 10px !important;
 }
 
 .thumbnailRow {
@@ -19,6 +31,7 @@
 
 .paginationRow {
     text-align: center;
+    padding-left: 10px;
 }
 
 .photoGrid {
@@ -30,7 +43,31 @@
     width: 400px;
 }
 
-.col-centered{
-    float: none;
-    margin: 0 auto;
+.list-group-item-header {
+    background: whitesmoke !important;
+    font-weight: bold;
+}
+
+.margin-bottom {
+    margin-bottom: 20px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.user-info-table {
+    margin-bottom: 20px;
+}
+
+.user-info-table td {
+    padding-left: 5px;
+}
+
+.return-button {
+    margin-top: 15px;
+}
+
+.align-right {
+    text-align: right;
 }
