@@ -16,10 +16,10 @@ export function fetchAlbums(limit) {
 	};
 }
 
-export function selectAlbum(album) {
+export function selectAlbum(album, user) {
 	return {
 		type: SELECT_ALBUM,
-		payload: album
+		payload: {album: album, creator: user}
 	}
 }
 

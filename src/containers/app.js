@@ -6,7 +6,7 @@ import PhotoList from './photo_list';
 
 class App extends Component {
 	render() {
-		if(this.props.selectedAlbum == null) {
+		if(!this.props.selectedAlbumData) {
 			return (
 				<div>
 					<div className="header">Albums</div>
@@ -17,7 +17,7 @@ class App extends Component {
 		else {
 			return (
 				<div>
-					<PhotoList album={this.props.selectedAlbum}/>
+					<PhotoList />
 				</div>
 			);
 		}
@@ -26,7 +26,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
 	return { 
-		selectedAlbum: state.albums.selectedAlbum,
+		selectedAlbumData: state.albums.selectedAlbumData,
 	};
 }
 

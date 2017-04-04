@@ -1,72 +1,67 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {Grid, Row, Col, Image, Button} from 'react-bootstrap';
 
+import PhotoModal from './photo_modal';
 import { unselectAlbum } from '../actions/actions_album';
-import { fetchPhotos, selectPhoto } from '../actions/actions_photo';
-import {Grid, Row, Col, Image, Pagination, Button} from 'react-bootstrap';
+import { fetchPhotos, fetchPhotosCount, selectPhoto, removePhotoData } from '../actions/actions_photo';
 
-const Thumbnail = (props) => {
-	return (
-		<Col md={2} lg={2}>
-			<Image src={props.photo.thumbnailUrl} onClick={() => props.onClick(props.photo)}/>
-		</Col>
-	);
-}
+const MAX_PHOTO_LIMIT = 24;
+var pageNumber = 1;
 
 class PhotoList extends Component {
 	componentWillMount() {
-		this.props.fetchPhotos(1);
-	}
-	
-	renderThumbnailRows() {
-		const photos = this.props.photos;
-
-		var thumbnailRows = [];
-		for(var i=0; i<photos.length - 5; i+=5){
-			thumbnailRows.push(
-				<Row className="thumbnailRow" key={i - (i * 4)}>
-					<Thumbnail photo={photos[i]}   onClick={this.props.selectPhoto} />
-					<Thumbnail photo={photos[i+1]} onClick={this.props.selectPhoto} />
-					<Thumbnail photo={photos[i+2]} onClick={this.props.selectPhoto} />
-					<Thumbnail photo={photos[i+3]} onClick={this.props.selectPhoto} />
-					<Thumbnail photo={photos[i+4]} onClick={this.props.selectPhoto} />
-					<Thumbnail photo={photos[i+5]} onClick={this.props.selectPhoto} />
-				</Row>
-			)
-		}
-
-		return thumbnailRows;
+		this.props.fetchPhotosCount(this.props.selectedAlbumData.album.id);
+		this.props.fetchPhotos(this.props.selectedAlbumData.album.id, MAX_PHOTO_LIMIT, 1);
 	}
 
-	renderFullSizeImage() {
-		if(!this.props.selectedPhoto) {
+	componentWillUnmount() {
+		pageNumber = 0;
+		this.props.removePhotoData();
+	}
+
+	previousPage() {
+		pageNumber--;
+		this.props.removePhotoData();
+		this.props.fetchPhotos(this.props.selectedAlbumData.album.id, MAX_PHOTO_LIMIT, pageNumber);
+	}
+
+	nextPage() {
+		pageNumber++;
+		this.props.removePhotoData();
+		this.props.fetchPhotos(this.props.selectedAlbumData.album.id, MAX_PHOTO_LIMIT, pageNumber);
+	}
+
+	render() {
+		if(!this.props.photos || !this.props.photosCount) {
 			return null;
 		}
 
 		return (
-			<Row>
-					<Image src={this.props.photos.selectedPhoto.url}/>
-			</Row>
-		)
-	}
-
-	render() {
-		return (
-			<div>			
+			<div>
 				<Grid className="photoGrid">
 					<Row>
-						<h3>Otsikko</h3>
-						Tekijän nimi
+						<Button className="return-button" bsStyle="primary" bsSize="large" onClick={() => this.props.unselectAlbum()}>&larr; Back To Albums</Button>
 					</Row>
-						{this.renderFullSizeImage()}
-						{this.renderThumbnailRows()}			
 					<Row>
-						<Col md={3} lg={3}>
-							<Button className="return-button" bsStyle="primary" bsSize="large" onClick={() => this.props.unselectAlbum()}>&larr; Back To Albums</Button>
+						<h2>{this.props.selectedAlbumData.album.title}</h2>
+						<strong>{`By: ${this.props.selectedAlbumData.creator.name}`}</strong>	
+					</Row>
+					<Row>
+						<PhotoModal />
+						{this.props.photos.map((photo) => { return (
+							<Col key={photo.id} className="thumbnail-col" md={2} lg={2}>
+        				<Image src={photo.thumbnailUrl} onClick={() => this.props.selectPhoto(photo)}/>
+      				</Col>); 
+						})}
+					</Row>
+					<Row>
+						<Col className="page-select-col" md={2} lg={2}>
+							<Button className="page-change-button" disabled={pageNumber > 1 ? false : true} onClick={() => this.previousPage()}>&larr; Previous Page</Button>
 						</Col>
-						<Col className="align-right" md={9} lg={9}>
-							<Pagination bsSize="Large" prev next first last items={20} maxButtons={10}/>
+						<Col className="page-select-col" md={2} lg={2} mdOffset={8} lgOffset={8}>
+							<Button className="page-change-button" disabled={pageNumber >= Math.ceil(this.props.photosCount / MAX_PHOTO_LIMIT) ? true : false} onClick={() => this.nextPage()}>Next Page &rarr;</Button>
 						</Col>
 					</Row>
 				</Grid>
@@ -76,11 +71,11 @@ class PhotoList extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({fetchPhotos, selectPhoto, unselectAlbum}, dispatch)
+	return bindActionCreators({fetchPhotos, selectPhoto, unselectAlbum, removePhotoData, fetchPhotosCount}, dispatch)
 }
 
 function mapStateToProps(state) {
-	return { photos: state.photos.all, selectedPhoto: state.photos.selectedPhoto, selectedAlbum: state.albums.selectedAlbum };
+	return { photos: state.photos.all, selectedPhoto: state.photos.selectedPhoto, selectedAlbumData: state.albums.selectedAlbumData, photosCount: state.photos.photosCount };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PhotoList);

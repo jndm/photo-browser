@@ -41,7 +41,7 @@ class AlbumListItem extends Component {
 						<ListGroupItem className="list-group-item-header"> ALBUMS </ListGroupItem>
 							{this.props.albums.map((album) => {
 								return (
-									<ListGroupItem key={album.id} onClick={() => this.props.selectAlbum(album)}>
+									<ListGroupItem key={album.id} onClick={() => this.props.selectAlbum(album, this.props.user)}>
 										{album.title}
 									</ListGroupItem>
 								);

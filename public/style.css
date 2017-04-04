@@ -68,6 +68,20 @@ html, body {
     margin-top: 15px;
 }
 
-.align-right {
-    text-align: right;
+.page-select-col {
+    padding-top: 20px;
+    text-align: left;
+}
+
+.page-change-button {
+    width: 150px;
+    font-weight: bold !important;
+}
+
+.photo-modal {
+    width: 40% !important;
+}
+
+.thumbnail-col {
+    margin-top: 10px;
 }
