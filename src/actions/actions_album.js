@@ -6,6 +6,9 @@ export const FETCH_ALBUMS = 'FETCH_ALBUMS';
 export const SELECT_ALBUM = 'SELECT_ALBUM';
 export const UNSELECT_ALBUM = 'UNSELECT_ALBUM';
 
+/*
+*	GETs all albums from back-end
+*/
 export function fetchAlbums(limit) {
 	const url = `${ROOT_URL}/albums/`;
 	const request = axios.get(url);
@@ -16,6 +19,10 @@ export function fetchAlbums(limit) {
 	};
 }
 
+/*
+*	Sets given user and parameter as
+* selected album data object to storage
+*/
 export function selectAlbum(album, user) {
 	return {
 		type: SELECT_ALBUM,
@@ -23,6 +30,10 @@ export function selectAlbum(album, user) {
 	}
 }
 
+/*
+*	Nulls selected album data object from
+* storage
+*/
 export function unselectAlbum() {
 	return {
 		type: UNSELECT_ALBUM,

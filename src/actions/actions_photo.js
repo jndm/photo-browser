@@ -8,6 +8,10 @@ export const REMOVE_PHOTO_DATA = 'REMOVE_PHOTO_DATA';
 export const UNSELECT_PHOTO = 'UNSELECT_PHOTO';
 export const FETCH_PHOTOS_COUNT = 'FETCH_PHOTOS_COUNT';
 
+/*
+*	GETs all photos by album id from back-end
+* Only results count is saved in storage as photo count
+*/
 export function fetchPhotosCount(albumId) {
 	const url = `${ROOT_URL}/photos/?albumId=${albumId}`;
 	const request = axios.get(url);
@@ -18,6 +22,10 @@ export function fetchPhotosCount(albumId) {
 	};
 }
 
+/*
+*	GETs all photos by album id from back-end
+* limited by given limit, and page
+*/
 export function fetchPhotos(albumId, limit, page) {
 	const url = `${ROOT_URL}/photos/?albumId=${albumId}&_page=${page}&_limit=${limit}/`;
 	const request = axios.get(url);
@@ -28,6 +36,9 @@ export function fetchPhotos(albumId, limit, page) {
 	};
 }
 
+/*
+*	Nulls photo data from storage
+*/
 export function removePhotoData() {
 	return {
 		type: REMOVE_PHOTO_DATA,
@@ -35,6 +46,9 @@ export function removePhotoData() {
 	}
 }
 
+/*
+*	Makes parameter photo to selected photo
+*/
 export function selectPhoto(photo) {
 	return {
 		type: SELECT_PHOTO,
@@ -42,6 +56,9 @@ export function selectPhoto(photo) {
 	}
 }
 
+/*
+*	Nulls selected photo in storage
+*/
 export function unselectPhoto() {
 	return {
 		type: UNSELECT_PHOTO,
