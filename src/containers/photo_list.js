@@ -21,7 +21,7 @@ class PhotoList extends Component {
 	}
 
 	componentWillUnmount() {
-		pageNumber = 0;
+		pageNumber = 1;
 		this.props.removePhotoData();
 	}
 
