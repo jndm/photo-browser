@@ -17,7 +17,7 @@ var pageNumber = 1;
 class PhotoList extends Component {
 	componentWillMount() {
 		this.props.fetchPhotosCount(this.props.selectedAlbumData.album.id);
-		this.props.fetchPhotos(this.props.selectedAlbumData.album.id, MAX_PHOTO_LIMIT, 1);
+		this.props.fetchPhotos(this.props.selectedAlbumData.album.id, MAX_PHOTO_LIMIT, pageNumber);
 	}
 
 	componentWillUnmount() {
