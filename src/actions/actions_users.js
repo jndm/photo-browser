@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = 'http://jsonplaceholder.typicode.com';
+const ROOT_URL = 'https://jsonplaceholder.typicode.com';
 
 export const FETCH_USERS = 'FETCH_USERS';
 
