@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
-import { Modal, Image } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {Modal, Image} from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { unselectPhoto } from '../actions/actions_photo';
+import {unselectPhoto} from '../actions/actions_photo';
 
+/*
+* Component to render modal to show full sized image
+* when thumbnail is clicked
+*/
 class PhotoModal extends Component {
   render() {
     if(!this.props.photo) {
@@ -16,7 +20,8 @@ class PhotoModal extends Component {
         <Modal 
           dialogClassName="photo-modal" 
           show={!this.props.photo ? false : true} 
-          onHide={() => this.props.unselectPhoto()}>
+          onHide={() => this.props.unselectPhoto()}
+        >
           
           <Modal.Header closeButton>
             <Modal.Title>{this.props.photo.title}</Modal.Title>

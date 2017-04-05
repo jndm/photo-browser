@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import AlbumListItem from '../components/album_list_item';
-import { fetchUsers } from '../actions/actions_users';
-import { fetchAlbums } from '../actions/actions_album';
+import {fetchUsers} from '../actions/actions_users';
+import {fetchAlbums} from '../actions/actions_album';
 
+/*
+*	Component to render panels for every user
+* to present their personal info and all of their albums.
+*/
 class AlbumList extends Component {
 	componentWillMount() {
 		this.props.fetchAlbums();
@@ -23,7 +27,8 @@ class AlbumList extends Component {
 					return <AlbumListItem 
 										key={user.id} 
 										user={user} 
-										albums={this.props.albums.filter((album) => album.userId === user.id)}/>
+										albums={this.props.albums.filter((album) => album.userId === user.id)} 
+									/>
 				})}
 			</div>
 		);

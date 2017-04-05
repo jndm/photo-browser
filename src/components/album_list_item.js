@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
-import { Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
-import { selectAlbum } from '../actions/actions_album';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
+import {selectAlbum} from '../actions/actions_album';
+
+/* 
+*	Presentational component to render table
+*	for album panel. 
+*/
 const UserInfo = (props) => {
 	return (
 		<table className="user-info-table">
@@ -29,16 +34,28 @@ const UserInfo = (props) => {
 	);
 }
 
+/*
+*	Presentational component to render album panel
+*/
 class AlbumListItem extends Component {
 	render() {
 		return (
 				<Panel 
 					className="album-list-item" 
 					collapsible
-					header={`${this.props.user.name} (${this.props.albums.length})`}>
-					<UserInfo name={this.props.user.name} email={this.props.user.email} phone={this.props.user.phone} website={this.props.user.website} />
+					header={`${this.props.user.name} (${this.props.albums.length})`}
+				>
+					<UserInfo 
+						name={this.props.user.name} 
+						email={this.props.user.email} 
+						phone={this.props.user.phone} 
+						website={this.props.user.website}
+					/>
+
 					<ListGroup>
-						<ListGroupItem className="list-group-item-header"> ALBUMS </ListGroupItem>
+						<ListGroupItem className="list-group-item-header"> 
+							ALBUMS 
+						</ListGroupItem>
 							{this.props.albums.map((album) => {
 								return (
 									<ListGroupItem key={album.id} onClick={() => this.props.selectAlbum(album, this.props.user)}>
