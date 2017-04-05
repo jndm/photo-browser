@@ -1,0 +1,71 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    min-width: 80%;
+}
+
+.header {
+    text-align: center;
+    font-size: 50pt;
+    font-weight: bold;
+}
+
+.album-list {
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color:lightgray;
+    border-radius: 20px;
+}
+
+.album-list-item {
+    margin: 10px !important;
+}
+
+.photoGrid {
+    border-color:black;
+    border: 1px, solid;
+}
+
+.list-group-item-header {
+    background: whitesmoke !important;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.user-info-table {
+    margin-bottom: 20px;
+}
+
+.user-info-table td {
+    padding-left: 5px;
+}
+
+.return-button {
+    margin-top: 15px;
+}
+
+.page-select-col {
+    padding-top: 20px;
+    text-align: left;
+}
+
+.page-change-button {
+    width: 150px;
+    font-weight: bold !important;
+}
+
+.photo-modal {
+    min-width: 630px !important;
+    width: 33% !important;
+}
+
+.thumbnail-col {
+    margin-top: 10px;
+}
