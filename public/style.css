@@ -62,8 +62,8 @@ html, body {
 }
 
 .photo-modal {
-    min-width: 650px;
-    width: 40% !important;
+    min-width: 630px !important;
+    width: 33% !important;
 }
 
 .thumbnail-col {
