@@ -36,7 +36,6 @@ export function removePhotoData() {
 }
 
 export function selectPhoto(photo) {
-	console.log("selecting photo");
 	return {
 		type: SELECT_PHOTO,
 		payload: photo
