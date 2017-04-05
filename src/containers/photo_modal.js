@@ -30,7 +30,7 @@ class PhotoModal extends Component {
           </Modal.Header>
 
           <Modal.Body>
-            <Image src={photoUrlHttps} />
+            <Image className="fullSizeImage" src={photoUrlHttps} />
           </Modal.Body>
 
         </Modal>

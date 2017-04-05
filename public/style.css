@@ -62,10 +62,14 @@ html, body {
 }
 
 .photo-modal {
-    min-width: 630px !important;
-    width: 33% !important;
+    min-width: 33% !important;
+    max-width: 60% !important;
 }
 
 .thumbnail-col {
     margin-top: 10px;
+}
+
+.fullSizeImage {
+    max-width: 100% !important;
 }

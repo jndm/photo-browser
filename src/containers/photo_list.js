@@ -70,7 +70,7 @@ class PhotoList extends Component {
 						{this.props.photos.map((photo) => { 
 							var photoThumbnailUrlHttps = photo.thumbnailUrl.replace("http://", "https://") + "/";
 							return (
-								<Col key={photo.id} className="thumbnail-col" md={2} lg={2}>
+								<Col key={photo.id} className="thumbnail-col" md={2} lg={2} sm={4} xs={6}>
 									<Image src={photoThumbnailUrlHttps} onClick={() => this.props.selectPhoto(photo)}/>
 								</Col>
 							); 
@@ -78,7 +78,7 @@ class PhotoList extends Component {
 					</Row>
 
 					<Row>
-						<Col className="page-select-col" md={2} lg={2}>
+						<Col className="page-select-col" md={2} lg={2} sm={4} xs={6}>
 							<Button 
 								className="page-change-button" 
 								disabled={disablePreviousButton} 
@@ -87,7 +87,7 @@ class PhotoList extends Component {
 								&larr; Previous Page
 							</Button>
 						</Col>
-						<Col className="page-select-col" md={2} lg={2} mdOffset={8} lgOffset={8}>
+						<Col className="page-select-col" md={2} lg={2} sm={4} xs={6} mdOffset={8} lgOffset={8} smOffset={4}>
 							<Button 
 								className="page-change-button"
 								disabled={disableNextButton} 
