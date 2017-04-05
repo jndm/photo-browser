@@ -52,7 +52,7 @@ html, body {
 }
 
 .page-select-col {
-    padding-top: 20px;
+    padding: 20px 0px;
     text-align: left;
 }
 
@@ -63,7 +63,7 @@ html, body {
 
 .photo-modal {
     min-width: 33% !important;
-    max-width: 60% !important;
+    max-width: 80% !important;
 }
 
 .thumbnail-col {
