@@ -15,6 +15,8 @@ class PhotoModal extends Component {
       return null;
     }
 
+    var photoUrlHttps = this.props.photo.url.replace("http://", "https://") + "/";
+
     return (
       <div>
         <Modal 
@@ -28,7 +30,7 @@ class PhotoModal extends Component {
           </Modal.Header>
 
           <Modal.Body>
-            <Image src={this.props.photo.url} />
+            <Image src={photoUrlHttps} />
           </Modal.Body>
 
         </Modal>

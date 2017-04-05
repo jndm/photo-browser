@@ -67,10 +67,13 @@ class PhotoList extends Component {
 
 					<Row>
 						<PhotoModal />
-						{this.props.photos.map((photo) => { return (
-							<Col key={photo.id} className="thumbnail-col" md={2} lg={2}>
-        				<Image src={photo.thumbnailUrl} onClick={() => this.props.selectPhoto(photo)}/>
-      				</Col>); 
+						{this.props.photos.map((photo) => { 
+							var photoThumbnailUrlHttps = photo.thumbnailUrl.replace("http://", "https://") + "/";
+							return (
+								<Col key={photo.id} className="thumbnail-col" md={2} lg={2}>
+									<Image src={photoThumbnailUrlHttps} onClick={() => this.props.selectPhoto(photo)}/>
+								</Col>
+							); 
 						})}
 					</Row>
 
