@@ -9,7 +9,7 @@ export const UNSELECT_PHOTO = 'UNSELECT_PHOTO';
 export const FETCH_PHOTOS_COUNT = 'FETCH_PHOTOS_COUNT';
 
 export function fetchPhotosCount(albumId) {
-	const url = `${ROOT_URL}/photos?albumId=${albumId}`;
+	const url = `${ROOT_URL}/photos/?albumId=${albumId}`;
 	const request = axios.get(url);
 
 	return {
@@ -19,7 +19,7 @@ export function fetchPhotosCount(albumId) {
 }
 
 export function fetchPhotos(albumId, limit, page) {
-	const url = `${ROOT_URL}/photos?albumId=${albumId}&_page=${page}&_limit=${limit}`;
+	const url = `${ROOT_URL}/photos/?albumId=${albumId}&_page=${page}&_limit=${limit}/`;
 	const request = axios.get(url);
 
 	return {

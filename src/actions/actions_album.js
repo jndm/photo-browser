@@ -7,7 +7,7 @@ export const SELECT_ALBUM = 'SELECT_ALBUM';
 export const UNSELECT_ALBUM = 'UNSELECT_ALBUM';
 
 export function fetchAlbums(limit) {
-	const url = `${ROOT_URL}/albums`;
+	const url = `${ROOT_URL}/albums/`;
 	const request = axios.get(url);
 
 	return {
